@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Тюлячкина Мария</title>
+</head>
+<body>
+    <h1>Введите текст:</h1>
+    <form id="inputForm">
+        <textarea id="inputText" rows="4" cols="50"></textarea>
+        <br>
+        <button type="submit">Перемешать буквы</button>
+    </form>
+    <h1>Перемешанный текст:</h1>
+    <p id="shuffledText"></p>
+    <script>
+        document.getElementById('inputForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const inputText = document.getElementById('inputText').value;
+            const shuffledText = shuffleWordsInSentence(inputText);
+            document.getElementById('shuffledText').innerText = shuffledText;
+        });
+        function shuffleLetters(word) {
+            if (word.length <= 2) {
+                return word;
+            } else {
+                const middlePart = word.slice(1, -1).split('');
+                for (let i = middlePart.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [middlePart[i], middlePart[j]] = [middlePart[j], middlePart[i]];
+                }
+                return word[0] + middlePart.join('') + word[word.length - 1];
+            }
+        }
+        function shuffleWordsInSentence(sentence) {
+            const words = sentence.split(' ');
+            const shuffledWords = words.map(word => shuffleLetters(word));
+            return shuffledWords.join(' ');
+        }
+    </script>
+</body>
+</html>

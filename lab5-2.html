@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тюлячкина Мария</title>
+    <script>
+        function processText() {
+            const inputText = document.getElementById('inputText').value;
+            const words = inputText.split(/\s+/);
+            let transformedSecondWord = '';
+            let wordsEndingWithE = 0;
+            if (words.length > 1) {
+                transformedSecondWord = words[1].split('').join(' ') + ' ';
+            }
+            words.forEach(word => {
+                if (word.endsWith('е')) {
+                    wordsEndingWithE++;
+                }
+            });
+            console.log("Преобразованное второе слово: " + transformedSecondWord);
+            console.log("Количество слов, заканчивающихся на 'е': " + wordsEndingWithE);
+            document.getElementById('transformedWord').textContent = "Преобразованное второе слово: " + transformedSecondWord;
+            document.getElementById('countE').textContent = "Количество слов, заканчивающихся на 'е': " + wordsEndingWithE;
+        }
+    </script>
+</head>
+<body>
+    <h1>Обработка текста</h1>
+    <textarea id="inputText" placeholder="Введите текст здесь"></textarea>
+    <button onclick="processText()">Обработать</button>
+    <p id="transformedWord"></p>
+    <p id="countE"></p>
+</body>
+</html>

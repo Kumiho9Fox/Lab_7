@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тюлячкина Мария</title>
+    <script>
+        function transformAndCount() {
+            var inputString = document.getElementById('inputString').value;
+            var transformedString = inputString.replace(/\*/g, '++');
+            var countF = (transformedString.match(/F/g) || []).length;
+            var countD = (transformedString.match(/D/g) || []).length;
+            var totalCount = countF + countD;
+            console.log("Исходная строка: " + inputString);
+            console.log("Преобразованная строка: " + transformedString);
+            console.log("Количество 'F': " + countF);
+            console.log("Количество 'D': " + countD);
+            console.log("Общее количество 'F' и 'D': " + totalCount);
+            document.getElementById('original').textContent = "Исходная строка: " + inputString;
+            document.getElementById('transformed').textContent = "Преобразованная строка: " + transformedString;
+            document.getElementById('countF').textContent = "Количество 'F': " + countF;
+            document.getElementById('countD').textContent = "Количество 'D': " + countD;
+            document.getElementById('totalCount').textContent = "Общее количество 'F' и 'D': " + totalCount;
+        }
+    </script>
+</head>
+<body>
+    <h1>Обработка вводимой строки</h1>
+    <input type="text" id="inputString" placeholder="Введите строку здесь">
+    <button onclick="transformAndCount()">Обработать</button>
+    <p id="original"></p>
+    <p id="transformed"></p>
+    <p id="countF"></p>
+    <p id="countD"></p>
+    <p id="totalCount"></p>
+</body>
+</html>

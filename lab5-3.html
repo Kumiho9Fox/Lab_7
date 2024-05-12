@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тюлячкина Мария</title>
+    <script>
+        function encryptText() {
+            const inputText = document.getElementById('inputText').value;
+            let encryptedText = '';
+            for (let i = 0; i < inputText.length; i++) {
+                let char = inputText[i];
+                if (char.match(/[а-я]/i)) {
+                    // Определение кода следующего символа в алфавите
+                    let code = char.charCodeAt(0);
+                    // Обработка крайних случаев для 'я' и 'Я'
+                    if (char === 'я') {
+                        char = 'а';
+                    } else if (char === 'Я') {
+                        char = 'А';
+                    } else {
+                        char = String.fromCharCode(code + 1);
+                    }
+                }
+                encryptedText += char;
+            }
+            console.log("Зашифрованный текст: " + encryptedText);
+            document.getElementById('encryptedText').textContent = "Зашифрованный текст: " + encryptedText;
+        }
+    </script>
+</head>
+<body>
+    <h1>Программа шифрования</h1>
+    <textarea id="inputText" placeholder="Введите текст для шифрования"></textarea>
+    <button onclick="encryptText()">Зашифровать</button>
+    <p id="encryptedText"></p>
+</body>
+</html>
